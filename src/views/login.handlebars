@@ -1,0 +1,28 @@
+<div class="entrada">
+    <form class="tarjeta-entrada" action="/contact" method="GET" id="form-entrada">
+        <div class="logo-chat">💬</div>
+        <h1>Chat global</h1>
+        <p class="subtitulo">Escribe tu nombre para entrar y hablar con todos</p>
+
+        <label for="user">Tu nombre</label>
+        <input type="text" name="user" id="user" value="{{username}}"
+               placeholder="Ej: Ana" maxlength="30" autocomplete="off" required autofocus>
+
+        <button type="submit">Entrar al chat</button>
+    </form>
+</div>
+
+<script>
+    // Recuerda el último nombre usado en este navegador
+    const campo = document.getElementById("user");
+    let guardado = "";
+    try { guardado = localStorage.getItem("chat-nombre") || ""; } catch (e) {}
+
+    {{#if cambiar}}
+    try { localStorage.removeItem("chat-nombre"); } catch (e) {}
+    {{else}}
+    if (guardado) {
+        location.replace("/contact?user=" + encodeURIComponent(guardado));
+    }
+    {{/if}}
+</script>

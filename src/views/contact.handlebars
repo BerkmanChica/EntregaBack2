@@ -1,0 +1,32 @@
+<div class="contenedor">
+    <div class="publicidad">Publicidad</div>
+
+    <header class="cabecera">
+        <div class="cabecera-info">
+            <h1>Chat global</h1>
+            <p class="en-linea" id="en-linea" title="{{#each enLinea}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}">
+                {{enLinea.length}} en línea
+            </p>
+        </div>
+
+        <div class="usuario-actual">
+            <span class="avatar" style="background-color: {{color username}}">{{inicial username}}</span>
+            <span class="username">{{username}}</span>
+            <a class="cambiar" href="/contact?cambiar=1&user={{username}}">Cambiar</a>
+        </div>
+    </header>
+
+    <div class="mensajes" id="mensajes">
+        {{> mensajes}}
+    </div>
+
+    <form class="fila-mensaje" id="form-chat" action="/contact" method="POST">
+        <label for="mensaje">Mensaje:</label>
+        <input type="hidden" name="autor" id="autor" value="{{username}}">
+        <input type="text" name="mensaje" id="mensaje" placeholder="Ingrese el mensaje"
+               maxlength="500" autocomplete="off" required autofocus>
+        <button type="submit">Enviar</button>
+    </form>
+</div>
+
+<script src="/js/chat.js"></script>

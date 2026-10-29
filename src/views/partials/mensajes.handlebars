@@ -1,0 +1,16 @@
+{{#each mensajes}}
+    {{#if this.sistema}}
+        <p class="aviso">{{this.texto}} · {{this.hora}}</p>
+    {{else}}
+        <div class="mensaje-fila {{#if (eq this.autor @root.username)}}propio{{/if}}">
+            <span class="avatar" style="background-color: {{color this.autor}}">{{inicial this.autor}}</span>
+            <div class="mensaje">
+                <span class="autor">{{this.autor}}</span>
+                <p class="texto">{{this.texto}}</p>
+                <span class="hora">{{this.hora}}</span>
+            </div>
+        </div>
+    {{/if}}
+{{else}}
+    <p class="vacio">Aún no hay mensajes. ¡Escribe el primero!</p>
+{{/each}}

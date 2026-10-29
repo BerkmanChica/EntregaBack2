@@ -1,0 +1,483 @@
+/* ===== Fuentes ===== */
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600;700&display=swap");
+
+/* ===== Variables ===== */
+:root {
+    --fondo: #14161c;
+    --panel: #1d2028;
+    --panel-2: #252935;
+    --azul: #3a6fd8;
+    --azul-oscuro: #2b56b0;
+    --azul-claro: #6b97f5;
+    --verde: #3ecf7a;
+    --texto: #f3f5fa;
+    --texto-suave: #9aa2b5;
+    --borde: rgba(255, 255, 255, 0.07);
+    --sombra: 0 20px 50px rgba(0, 0, 0, 0.45);
+    --radio: 16px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 15% 10%, rgba(58, 111, 216, 0.18), transparent 40%),
+        radial-gradient(circle at 85% 90%, rgba(107, 151, 245, 0.12), transparent 45%),
+        var(--fondo);
+    color: var(--texto);
+    font-family: "Inter", Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 32px 16px;
+}
+
+/* =========================================================
+   PANTALLA DE ENTRADA (pedir nombre)
+   ========================================================= */
+.entrada {
+    width: 100%;
+    min-height: calc(100vh - 64px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tarjeta-entrada {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color: var(--panel);
+    border: 1px solid var(--borde);
+    border-radius: 24px;
+    padding: 40px 32px;
+    box-shadow: var(--sombra);
+    text-align: center;
+    animation: aparecer 0.35s ease-out;
+}
+
+.logo-chat {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 6px;
+    display: grid;
+    place-items: center;
+    font-size: 2rem;
+    border-radius: 22px;
+    background: linear-gradient(135deg, var(--azul-claro), var(--azul-oscuro));
+    box-shadow: 0 10px 25px rgba(58, 111, 216, 0.45);
+}
+
+.tarjeta-entrada h1 {
+    font-family: "Barlow Condensed", Arial, sans-serif;
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.subtitulo {
+    color: var(--texto-suave);
+    font-size: 0.95rem;
+    margin-bottom: 14px;
+}
+
+.tarjeta-entrada label {
+    text-align: left;
+    color: var(--texto-suave);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.tarjeta-entrada input {
+    background-color: var(--fondo);
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    padding: 14px 16px;
+    color: var(--texto);
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.tarjeta-entrada input:focus {
+    border-color: var(--azul-claro);
+    box-shadow: 0 0 0 4px rgba(107, 151, 245, 0.15);
+}
+
+/* =========================================================
+   CHAT
+   ========================================================= */
+.contenedor {
+    width: 100%;
+    max-width: 780px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background-color: var(--panel);
+    border: 1px solid var(--borde);
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: var(--sombra);
+    animation: aparecer 0.35s ease-out;
+}
+
+/* ----- Publicidad ----- */
+.publicidad {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--azul-claro), var(--azul-oscuro));
+    border-radius: var(--radio);
+    padding: 24px;
+    text-align: center;
+    font-family: "Barlow Condensed", Arial, sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+/* Brillo que cruza el banner */
+.publicidad::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 40%, rgba(255, 255, 255, 0.18) 50%, transparent 60%);
+    transform: translateX(-100%);
+    animation: brillo 4s ease-in-out infinite;
+}
+
+/* ----- Cabecera ----- */
+.cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 4px 4px 0;
+}
+
+.cabecera h1 {
+    font-family: "Barlow Condensed", Arial, sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.en-linea {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--texto-suave);
+    font-size: 0.85rem;
+    cursor: default;
+}
+
+.en-linea::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--verde);
+    box-shadow: 0 0 8px var(--verde);
+    animation: latido 2s ease-in-out infinite;
+}
+
+.usuario-actual {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--panel-2);
+    border: 1px solid var(--borde);
+    border-radius: 999px;
+    padding: 5px 6px 5px 5px;
+}
+
+.username {
+    font-weight: 600;
+    font-size: 0.9rem;
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cambiar {
+    color: var(--texto-suave);
+    font-size: 0.75rem;
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 999px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.cambiar:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--texto);
+}
+
+/* ----- Avatar (círculo con la inicial) ----- */
+.avatar {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* ----- Caja de mensajes ----- */
+.mensajes {
+    height: 420px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color: var(--fondo);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    padding: 20px;
+    scroll-behavior: smooth;
+}
+
+.mensajes::-webkit-scrollbar {
+    width: 8px;
+}
+
+.mensajes::-webkit-scrollbar-thumb {
+    background-color: var(--panel-2);
+    border-radius: 8px;
+}
+
+.vacio {
+    margin: auto;
+    color: var(--texto-suave);
+    font-size: 0.9rem;
+}
+
+/* Aviso del sistema: "Ana se unió al chat" */
+.aviso {
+    align-self: center;
+    background-color: var(--panel);
+    border: 1px solid var(--borde);
+    border-radius: 999px;
+    padding: 5px 14px;
+    color: var(--texto-suave);
+    font-size: 0.75rem;
+}
+
+/* Fila: avatar + burbuja */
+.mensaje-fila {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    max-width: 80%;
+}
+
+.mensaje-fila.propio {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+.mensaje-fila:last-child,
+.aviso:last-child {
+    animation: aparecer 0.25s ease-out;
+}
+
+/* Burbuja */
+.mensaje {
+    min-width: 0;
+    background-color: var(--panel-2);
+    border-radius: 16px 16px 16px 4px;
+    padding: 9px 14px 7px;
+    line-height: 1.45;
+}
+
+.propio .mensaje {
+    background: linear-gradient(135deg, var(--azul-claro), var(--azul));
+    border-radius: 16px 16px 4px 16px;
+}
+
+.mensaje .autor {
+    display: block;
+    margin-bottom: 2px;
+    color: var(--azul-claro);
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.propio .mensaje .autor {
+    display: none;            /* no hace falta mostrar tu propio nombre */
+}
+
+.mensaje .texto {
+    overflow-wrap: anywhere;
+}
+
+.mensaje .hora {
+    display: block;
+    margin-top: 3px;
+    text-align: right;
+    color: var(--texto-suave);
+    font-size: 0.68rem;
+}
+
+.propio .mensaje .hora {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* ----- Barra para escribir ----- */
+.fila-mensaje {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: var(--fondo);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    padding: 8px 8px 8px 18px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.fila-mensaje:focus-within {
+    border-color: var(--azul-claro);
+    box-shadow: 0 0 0 4px rgba(107, 151, 245, 0.12);
+}
+
+.fila-mensaje label {
+    color: var(--texto-suave);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.fila-mensaje input {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 12px 4px;
+    color: var(--texto);
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.fila-mensaje input::placeholder,
+.tarjeta-entrada input::placeholder {
+    color: var(--texto-suave);
+}
+
+/* ----- Botones ----- */
+.fila-mensaje button,
+.tarjeta-entrada button {
+    background: linear-gradient(135deg, var(--azul-claro), var(--azul));
+    border: none;
+    border-radius: 12px;
+    padding: 12px 22px;
+    color: #ffffff;
+    font-family: "Barlow Condensed", Arial, sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s, filter 0.15s;
+}
+
+.tarjeta-entrada button {
+    margin-top: 8px;
+    padding: 14px;
+}
+
+.fila-mensaje button:hover,
+.tarjeta-entrada button:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.08);
+    box-shadow: 0 8px 20px rgba(58, 111, 216, 0.45);
+}
+
+.fila-mensaje button:active,
+.tarjeta-entrada button:active {
+    transform: translateY(0);
+}
+
+/* ----- Animaciones ----- */
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes brillo {
+    0%, 60% { transform: translateX(-100%); }
+    100%    { transform: translateX(100%); }
+}
+
+@keyframes latido {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.4; }
+}
+
+/* ----- Celulares ----- */
+@media (max-width: 600px) {
+    body {
+        padding: 12px;
+    }
+
+    .contenedor {
+        padding: 14px;
+        border-radius: 20px;
+    }
+
+    .publicidad {
+        padding: 16px;
+        font-size: 1.3rem;
+    }
+
+    .cabecera {
+        flex-wrap: wrap;
+    }
+
+    .cambiar {
+        padding: 6px 8px;
+    }
+
+    .mensajes {
+        height: calc(100vh - 330px);
+        min-height: 280px;
+        padding: 14px;
+    }
+
+    .mensaje-fila {
+        max-width: 92%;
+    }
+
+    .fila-mensaje label {
+        display: none;        /* el placeholder ya indica qué escribir */
+    }
+
+    .tarjeta-entrada {
+        padding: 32px 22px;
+    }
+}
+
+/* Respeta a quien prefiere menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
